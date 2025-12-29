@@ -1,7 +1,13 @@
+import { useState } from "react"
 
 
 function App() {
   const title = "Add user"
+  const[user,setUser]=useState([])
+  const[name,setname]=useState("")
+  const[age,setage]=useState("")
+
+
   return (
     <>
       <div className="container">
@@ -9,8 +15,8 @@ function App() {
           <h1>{title}</h1>
         </div>
         <div className="Input">
-          <input type="text" placeholder="name" />
-          <input type="date" placeholder="Age" />
+          <input type="text" placeholder="name"  value={name} onChange={(e)=>setname(e.target.value)}/>
+          <input type="date" placeholder="Age"  value={age} onChange={(e)=>setage(e.target.value)}/>
           <button>Add user</button>
         </div>
         <div className="userList">
