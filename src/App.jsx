@@ -6,13 +6,24 @@ function App() {
   const[user,setUser]=useState([])
   const[name,setname]=useState("")
   const[age,setage]=useState("")
+  const[update,setUpdate]=useState(false)
 
   const addUser=()=>{
-    const newUser={name:name,age:age}
+    const newUser={
+      
+      name:name,
+      age:age}
     setUser(prevuser=>[...prevuser,newUser])
     setage("")
     setname("")
     console.log(user)
+  }
+
+  const editUser=(user)=>{
+    setage(user.age)
+    setname(user.name)
+    setUpdate(true)
+
   }
 
 
@@ -31,20 +42,28 @@ function App() {
           <table className="table">
             <thead>
               <tr>
+            
                 <th>Name</th>
                 <th>Age</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>name</td>
-                <td>age</td>
+              {user.map((elemt,index)=>{
+                return(
+                  <>
+                <tr key={index}>
+                <td>{elemt.name}</td>
+                <td>{elemt.age}</td>
                 <td className="actionButton">
-                  <button>Editer</button>
+                  <button onClick={()=>editUser(elemt,index)}>Editer</button>
                   <button>Supprimer</button>
                 </td>
               </tr>
+                  </>
+                )
+              })}
+              
 
             </tbody>
           </table>
