@@ -6,14 +6,16 @@ function App() {
   const[user,setUser]=useState([])
   const[name,setname]=useState("")
   const[age,setage]=useState("")
+
   const[update,setUpdate]=useState(false)
 
   const addUser=()=>{
     const newUser={
-      
+
       name:name,
       age:age}
     setUser(prevuser=>[...prevuser,newUser])
+
     setage("")
     setname("")
     console.log(user)
@@ -36,7 +38,10 @@ function App() {
         <div className="Input">
           <input type="text" placeholder="name"  value={name} onChange={(e)=>setname(e.target.value)}/>
           <input type="number" placeholder="Age"  value={age} onChange={(e)=>setage(e.target.value)}/>
-          <button onClick={addUser}>Add user</button>
+          {
+          update?( <button onClick={()=>editUser(user,index)}>Edit user</button>):( <button onClick={addUser}>Add user</button>)
+          }
+         
         </div>
         <div className="userList">
           <table className="table">
@@ -52,7 +57,7 @@ function App() {
               {user.map((elemt,index)=>{
                 return(
                   <>
-                <tr key={index}>
+                <tr>
                 <td>{elemt.name}</td>
                 <td>{elemt.age}</td>
                 <td className="actionButton">
