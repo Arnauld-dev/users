@@ -7,6 +7,14 @@ function App() {
   const[name,setname]=useState("")
   const[age,setage]=useState("")
 
+  const addUser=()=>{
+    const newUser={name:name,age:age}
+    setUser(prevuser=>[...prevuser,newUser])
+    setage("")
+    setname("")
+    console.log(user)
+  }
+
 
   return (
     <>
@@ -16,8 +24,8 @@ function App() {
         </div>
         <div className="Input">
           <input type="text" placeholder="name"  value={name} onChange={(e)=>setname(e.target.value)}/>
-          <input type="date" placeholder="Age"  value={age} onChange={(e)=>setage(e.target.value)}/>
-          <button>Add user</button>
+          <input type="number" placeholder="Age"  value={age} onChange={(e)=>setage(e.target.value)}/>
+          <button onClick={addUser}>Add user</button>
         </div>
         <div className="userList">
           <table className="table">
